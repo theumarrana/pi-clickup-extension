@@ -34,7 +34,7 @@ DELETE requests and local-file uploads require interactive confirmation.
 ## Install
 
 ```bash
-pi install git:github.com/umar-rana/pi-clickup-extension
+pi install git:github.com/theumarrana/pi-clickup-extension
 ```
 
 Restart Pi or run `/reload` after installation.
@@ -42,7 +42,7 @@ Restart Pi or run `/reload` after installation.
 For local development:
 
 ```bash
-git clone https://github.com/umar-rana/pi-clickup-extension.git
+git clone https://github.com/theumarrana/pi-clickup-extension.git
 cd pi-clickup-extension
 npm install
 pi -e ./index.ts

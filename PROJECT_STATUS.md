@@ -20,7 +20,7 @@ Dropping `private: true` removes npm's accidental-publish guardrail. Accepted de
 
 | Area | Source |
 |---|---|
-| Code, specs, checks | `https://github.com/umar-rana/pi-clickup-extension` and this local checkout |
+| Code, specs, checks | `https://github.com/theumarrana/pi-clickup-extension` and this local checkout |
 | API contract | Official ClickUp v2/v3 OpenAPI specifications |
 | Coordination | `PROJECT_STATUS.md` |
 | New-Pi onboarding | `NTS-PICU-NewPiHandoff-0001.md` |
