@@ -250,6 +250,18 @@ host, absolute destination and the overwrite flag.
   makes the fix a one-line change.
 - **Third tool** — grows the prompt surface; justified because the alternative is granting generic
   credentialed fetching, which is strictly worse.
+- **Directory-swap window in `clickup_download`** (reviewer finding 1) — the parent directory's
+  identity is re-verified synchronously immediately before each `open`/`rename`, leaving a
+  syscall-wide window: an attacker who can rename directories inside the destination directory's
+  parent (i.e. who already acts with this user's privileges) could redirect the write. Node offers
+  no `openat`/`fchdir`, so the only alternative is a `chdir` child process, rejected for
+  portability (Pi may run as a Bun binary). The code carries a `shortcut:` comment naming the
+  limit and the upgrade trigger.
+
+  **Owner ruling, Umar 2026-11-22: accepted.** Rationale: the threat requires a second local
+  principal with write access to a shared parent directory, on a single-user workstation whose
+  repositories live under the user's home. Recorded here because the author and the reviewer
+  deadlocked after three cycles and neither may close it alone.
 
 ## 10. Contract amendments (exact wording)
 

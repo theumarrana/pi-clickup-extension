@@ -64,6 +64,17 @@ Default to action on reversible routine choices. Self-report idle or rate-limite
 
 Ponytail full, enforced by `AGENTS.md` and QA. Security, trust-boundary validation, cancellation and data-loss prevention are not simplification targets.
 
+## Accepted residual risk: download directory swap
+
+`clickup_download` re-verifies the destination directory's identity synchronously before each
+file syscall. A syscall-wide window remains where a second local principal with write access to
+that directory's parent could swap it. Node exposes no `openat`/`fchdir`, and a `chdir` child
+process was rejected for portability. Code carries a `shortcut:` comment.
+
+Owner ruling, Umar 2026-11-22: **accepted**. The reviewer-of-record held that directory-relative
+operations were required; the author accepted the risk; the deadlock was routed to the owner per
+the three-cycle rule rather than settled by either agent.
+
 ## Known gap: automatic CI triggers
 
 `.github/workflows/verify.yml` declares `push` and `pull_request` triggers, but neither has ever fired; every run in repository history is `workflow_dispatch`. Pushes to `development`, `staging`, and `production` during the `f8ed446` release produced no automatic run. The workflow is active and Actions are enabled, so the cause is external to the file (suspected account-level policy or repository-transfer artifact) and is under separate investigation.
